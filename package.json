@@ -13,9 +13,13 @@
   "name": "mevn",
   "version": "1.0.0",
   "description": "MongoDB, Express.js, Vue.js, Node.js",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client-install": "npm install --prefix client",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run serve --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "B.V. ProCodes.net",
   "license": "MIT",
