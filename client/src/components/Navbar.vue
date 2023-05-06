@@ -1,0 +1,116 @@
+<template>
+
+<nav id="menu">
+  <input type="checkbox"><label></label>
+  <ul>
+    <li><router-link to="/">MEVN</router-link></li>
+    <li><router-link to="/about">About</router-link></li>
+    <li><router-link to="/login">Login</router-link></li>
+    <li><router-link to="/register">Register</router-link></li>
+    <li><router-link to="/profile">Profile</router-link></li>
+    <li><a to="/logout">Logout</a></li>
+  </ul>
+</nav>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+#menu {
+	background: lightgrey;
+	color: black;
+	height: 45px;
+	padding-left: 18px;
+}
+#menu ul, #menu li {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+#menu ul {
+	width: 100%;
+}
+#menu li {
+	float: left;
+	display: inline;
+	position: relative;
+}
+#menu a {
+	display: block;
+	line-height: 45px;
+	padding: 0 14px;
+	text-decoration: none;
+	color: black;
+	font-size: 16px;
+}
+#menu a.dropdown-arrow:after {
+	content: "\25BE";
+	margin-left: 5px;
+}
+#menu li a:hover {
+	font-weight: bold;
+}
+#menu li a.router-link-active {
+	background: white;
+}
+#menu input {
+	display: none;
+	margin: 0;
+	padding: 0;
+	height: 45px;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+#menu label {
+	display: none;
+	line-height: 45px;
+	text-align: center;
+	position: absolute;
+	left: 35px;
+}
+#menu label:before {
+	font-size: 1.6em;
+	content: "\2261"; 
+	margin-left: 20px;
+}
+#menu ul.sub-menus{
+	height: auto;
+	overflow: hidden;
+	width: 170px;
+	background: lightgrey;
+	position: absolute;
+	z-index: 99;
+	display: none;
+}
+#menu ul.sub-menus li {
+	display: block;
+	width: 100%;
+}
+#menu ul.sub-menus a {
+	color: black;
+	font-size: 16px;
+}
+#menu li:hover ul.sub-menus {
+	display: block;
+}
+#menu ul.sub-menus a:hover{
+	font-weight: bold;
+}
+@media screen and (max-width: 800px){
+	#menu {position:relative}
+	#menu ul {background:lightgrey;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none}
+	#menu ul.sub-menus {width:100%;position:static}
+	#menu ul.sub-menus a {padding-left:30px}
+	#menu li {display:block;float:none;width:auto}
+	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
+	#menu input {z-index:4}
+	#menu input:checked + label {color:black}
+	#menu input:checked + label:before {content:"\00d7"}
+	#menu input:checked ~ ul {display:block}
+}
+</style>
