@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Login</h2>
-    <form>
+    <form @submit.prevent="loginUser">
       <ul class="form">
         <li class="form-row">
           <label for="username">Username</label>
@@ -12,7 +12,7 @@
           <input type="password" id="password" name="password" v-model="password">
         </li>
         <li class="form-row">
-          <button>Submit</button>
+          <input type="submit" value="Submit"/>
         </li>
       </ul>
     </form>
@@ -21,14 +21,33 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     data() {
         return {
             username: "",
             password: ""
         };
+    },
+    methods: {
+      ...mapActions(['login']),
+      loginUser() {
+        let user = {
+          username: this.username,
+          password: this.password
+        };
+        this.login(user)
+          .then(res => {
+            if (res.data.success) {
+              this.$router.push("/profile");
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     }
-}
+};
 </script>
 
 <style>

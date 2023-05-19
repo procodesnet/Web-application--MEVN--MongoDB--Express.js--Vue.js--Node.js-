@@ -5,18 +5,21 @@
   <ul>
     <li><router-link to="/">MEVN</router-link></li>
     <li><router-link to="/about">About</router-link></li>
-    <li><router-link to="/login">Login</router-link></li>
-    <li><router-link to="/register">Register</router-link></li>
-    <li><router-link to="/profile">Profile</router-link></li>
-    <li><a to="/logout">Logout</a></li>
+    <li v-if="!isLoggedIn"><router-link to="/login">Login</router-link></li>
+    <li v-if="!isLoggedIn"><router-link to="/register">Register</router-link></li>
+    <li v-if="isLoggedIn"><router-link to="/profile">Profile</router-link></li>
+    <li v-if="isLoggedIn"><a to="/logout">Logout</a></li>
   </ul>
 </nav>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-
-}
+	computed: {
+		...mapGetters(["isLoggedIn"])
+	}
+};
 </script>
 
 <style>
