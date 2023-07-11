@@ -8,16 +8,22 @@
     <li v-if="!isLoggedIn"><router-link to="/login">Login</router-link></li>
     <li v-if="!isLoggedIn"><router-link to="/register">Register</router-link></li>
     <li v-if="isLoggedIn"><router-link to="/profile">Profile</router-link></li>
-    <li v-if="isLoggedIn"><a to="/logout">Logout</a></li>
+    <li v-if="isLoggedIn"><a to="/logout" @click.prevent="logoutUser">Logout</a></li>
   </ul>
 </nav>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
 	computed: {
 		...mapGetters(["isLoggedIn"])
+	},
+	methods: {
+		...mapActions(['logout']),
+		logoutUser() {
+			this.logout();
+		}
 	}
 };
 </script>
