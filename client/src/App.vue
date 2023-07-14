@@ -1,16 +1,23 @@
 <template>
   <Navbar/>
+  <Error v-if="error" :msg="error" />
   <div class="wrapper auto-grid">
     <router-view/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Navbar from "@/components/Navbar.vue";
+import Error from "@/components/Error.vue";
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Error
+  },
+  computed: {
+    ...mapGetters(["error"])
   }
 }
 </script>

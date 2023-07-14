@@ -1,7 +1,7 @@
 <template>
   <div>
       <h2>Profile</h2>
-      <form>
+      <form v-if="user">
       <ul class="form">
         <li class="form-row">
           <label for="email">Email: {{ user.email }}</label>
